@@ -1,0 +1,59 @@
+{
+  "intents": [
+    {
+      "intent": "TwitterSearchIntent",
+      "slots": [
+        {
+          "name": "SearchTerm",
+          "type": "SEARCH_TERMS"
+        },
+        {
+          "name": "Count",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "TwitterMyLatestsPostsIntent",
+      "slots": [
+        {
+          "name": "SearchTerm",
+          "type": "SEARCH_TERMS"
+        },
+        {
+          "name": "Count",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "TwitterTimelineIntent",
+      "slots": [
+        {
+          "name": "SearchTerm",
+          "type": "SEARCH_TERMS"
+        },
+        {
+          "name": "Count",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "TwitterMentionIntent",
+      "slots": [
+        {
+          "name": "SearchTerm",
+          "type": "SEARCH_TERMS"
+        },
+        {
+          "name": "Count",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

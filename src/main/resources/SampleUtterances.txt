@@ -1,0 +1,8 @@
+TwitterSearchIntent search {SearchTerm}
+TwitterSearchIntent search for {SearchTerm}
+TwitterSearchIntent search {Count} tweets for {SearchTerm}
+TwitterTimelineIntent get my timeline
+TwitterMentionIntent get my mentions
+TwitterMentionIntent get my last {Count} mentions
+TwitterMyLatestsPostsIntent get my latest tweets
+TwitterMyLatestsPostsIntent get my last {Count} tweets

@@ -1,0 +1,92 @@
+import com.amazonaws.services.lambda.model.InvocationType
+import com.amazonaws.services.lambda.model.Runtime
+import jp.classmethod.aws.gradle.lambda.AWSLambdaInvokeTask
+import jp.classmethod.aws.gradle.lambda.AWSLambdaMigrateFunctionTask
+
+// Gradle AWS Plugin
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "jp.classmethod.aws:gradle-aws-plugin:0.22"
+    }
+}
+
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'jp.classmethod.aws.lambda'
+
+group 'vanderfox.alexa.twitter'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Groovy
+    compile 'org.codehaus.groovy:groovy:2.4.5'
+    // AWS Lambda
+    compile 'com.amazonaws:aws-lambda-java-core:1.1.0'
+    compile 'com.amazonaws:aws-lambda-java-events:1.1.0'
+    // AWS Dynamodb AWS
+    compile "com.amazonaws:aws-java-sdk-dynamodb:1.10.34"
+    compile 'com.amazon.alexa:alexa-skills-kit:1.1.2'
+    compile 'org.slf4j:slf4j-api:1.7.10'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
+    //compile 'org.apache.groovy.modules.http-builder:http-builder:0.5.2'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+    compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+    compile 'org.springframework.social:spring-social-twitter:1.1.2.RELEASE'
+    compile 'org.springframework.social:spring-social-web:1.1.4.RELEASE'
+    compile 'org.slf4j:jul-to-slf4j:1.7.19'
+    compile 'org.slf4j:slf4j-api:1.7.19'
+    compile 'com.twitter:twitter-text:1.13.4'
+
+
+
+
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+build.dependsOn buildZip
+
+// Gradle AWS Plugin  - for your AWS credentials profile name here. Default location is ~/.aws/credentials
+// blank profile name is default
+aws {
+    profileName = "vanderfox"
+}
+
+task deploy(type: AWSLambdaMigrateFunctionTask, dependsOn: build) {
+    functionName = "TwitterSearchGroovy"
+    handler = "com.vanderfox.TwitterSearch.TwitterSearchSpeechletRequestStreamHandler"
+    role = "arn:aws:iam::${aws.accountId}:role/lambda_basic_execution"
+    runtime = Runtime.Java8
+    zipFile = buildZip.archivePath
+    memorySize = 512
+    timeout = 60
+}
+
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-fat'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+build.dependsOn fatJar
+
+task runMain() {
+
+
+}
