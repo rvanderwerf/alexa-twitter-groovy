@@ -2,8 +2,8 @@
 
 [Latest documentation](https://github.com/rvanderwerf/alexa-twitter-groovy) 
 # Build Status
-![build status](https://travis-ci.org/grails-plugins/grails-quartz.svg?branch=master "Build Status")
-[Build Details](https://travis-ci.org/grails-plugins/grails-quartz/)
+![build status](https://travis-ci.org/rvanderwerf/alexa-twitter-groovy.svg?branch=master)
+[Build Details](https://travis-ci.org/rvanderwerf/alexa-twitter-groovy/)
 ## Branches
 
 ## Authors
