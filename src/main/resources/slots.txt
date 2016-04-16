@@ -1,1 +1,4 @@
-SEARCH_TERMS	#query | #searchterm
+#ENTER TYPE = "SEARCH_TERMS"
+#THEN paste (without the quotes) 'query' and 'searchterm' as seperate values.
+#Once you save it, it will look like this:
+SEARCH_TERMS	query | searchterm
