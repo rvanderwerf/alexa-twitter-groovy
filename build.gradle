@@ -65,12 +65,12 @@ build.dependsOn buildZip
 // Gradle AWS Plugin  - for your AWS credentials profile name here. Default location is ~/.aws/credentials
 // blank profile name is default
 aws {
-    profileName = "vanderfox"
-}
+    profileName = "default"
+} 
 
 task deploy(type: AWSLambdaMigrateFunctionTask, dependsOn: build) {
     functionName = "TwitterSearchGroovy"
-    handler = "com.vanderfox.TwitterSearch.TwitterSearchSpeechletRequestStreamHandler"
+    handler = "com.vanderfox.twittersearch.TwitterSearchSpeechletRequestStreamHandler"
     role = "arn:aws:iam::${aws.accountId}:role/lambda_basic_execution"
     runtime = Runtime.Java8
     zipFile = buildZip.archivePath

@@ -171,7 +171,7 @@ public class TwitterSearchSpeechlet implements Speechlet {
     private void loadCredentials() {
         final Properties properties = new Properties();
         try {
-            InputStream stream = TwitterSearchSpeechlet.class.getClassLoader()getResourceAsStream("springSocial.properties")
+            InputStream stream = com.vanderfox.twittersearch.TwitterSearchSpeechlet.class.getClassLoader()getResourceAsStream("springSocial.properties")
             properties.load(stream);
             ACCESS_TOKEN = properties.get("accessToken")
             ACCESS_TOKEN_SECRET = properties.get("accessTokenSecret")
